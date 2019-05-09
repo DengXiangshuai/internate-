@@ -1,0 +1,11 @@
+<image  class="userinfo-avatar" src="{{ user_info.avatar_url }}" ></image>
+<text class='avater'>用户名 : 小黑</text>
+  <view style="height:20rpx;background: #eee;width:100%;"></view>
+  <view class="my-item">
+    <navigator url="/pages/my/addressList" hover-class="navigator-hover">我的收货地址</navigator>
+  </view>
+
+ 
+
+ 
+

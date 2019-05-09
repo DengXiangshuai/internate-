@@ -1,0 +1,86 @@
+<!--index.wxml-->
+<!--1px = 750/320 = 2.34rpx;-->
+<view class="container">
+  <!--轮播图-->
+  <view class="swiper-container">
+    <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+      <block wx:for="{{banners}}" wx:key="id">
+        <swiper-item>
+          <image bindtap="tapBanner" data-id="{{item.id}}" src="{{item.pic_url}}" class="slide-image" width="750rpx" height="562.5rpx" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">
+      <block wx:for="{{banners}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+  <!--分类展示-->
+  <view class='nowrap'>
+    <view class="type-box ">
+      <view class="type-navbar-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" bindtap="switchTab">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+ 
+  <view hidden='{{currentNavtab==0 ? "":true}}'>
+    <view class="goods-container">
+      <view class="goods-box" wx:for-items="{{goods}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="toDetailsTap">
+        <view class="img-box">
+          <image src="{{item.pic_url}}" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">{{item.name}}</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥ {{item.min_price}}</view>
+          <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view hidden="{{currentNavtab==1 ? '' : true}}">
+    <view class="goods-container">
+      <view class="goods-box" wx:for-items="{{chuancai}}" bindtap="toDetailsTap" wx:for-index="idx" data-idx="{{chuancai[idx].id}}">
+        <view class="img-box">
+          <image src="{{item.pic_url}}" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">{{item.name}}</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥ {{item.min_price}}</view>
+          <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="ctnt2 placehold" hidden="{{currentNavtab==2 ? '' : true}}">
+    <view class="goods-container">
+      <view class="goods-box" wx:for-items="{{qingzhen}}" bindtap="toDetailsTap" wx:for-index="idx" data-idx="{{qingzhen[idx].id}}">
+        <view class="img-box">
+          <image src="{{item.pic_url}}" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">{{item.name}}</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥ {{item.min_price}}</view>
+          <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+<view class="ctnt2 placehold" hidden="{{currentNavtab==3 ? '' : true}}">
+    <view class="goods-container">
+      <view class="goods-box" wx:for-items="{{dongbei}}" bindtap="toDetailsTap" wx:for-index="idx" data-idx="{{dongbei[idx].id}}">
+        <view class="img-box">
+          <image src="{{item.pic_url}}" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">{{item.name}}</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥ {{item.min_price}}</view>
+          <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
+</view>

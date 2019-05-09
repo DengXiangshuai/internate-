@@ -1,0 +1,7 @@
+<!--pages/payOK/payOK.wxml-->
+<view class='container'>
+  <view class='textOk'>
+    <text>提交成功！请耐心等待</text>
+    <image class='img' src='/images/order/icon-jycg.png'></image>
+  </view>
+</view>
